@@ -1,10 +1,15 @@
 "use client"
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
-import { revenueData } from "@/lib/mock-data"
+import { revenueData as defaultData } from "@/lib/mock-data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { RevenueData } from "@/types"
 
-export function GrowthBarChart() {
+interface GrowthBarChartProps {
+  data?: RevenueData[]
+}
+
+export function GrowthBarChart({ data = defaultData }: GrowthBarChartProps) {
   return (
     <Card>
       <CardHeader>
@@ -12,7 +17,7 @@ export function GrowthBarChart() {
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={350}>
-          <BarChart data={revenueData}>
+          <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
             <XAxis dataKey="name" className="text-xs" />
             <YAxis className="text-xs" />
